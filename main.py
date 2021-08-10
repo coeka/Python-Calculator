@@ -1,6 +1,7 @@
 import pyqt5_tools
 import pyqt5_plugins
 import PyQt5
+import math
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt, endl
@@ -38,6 +39,10 @@ class MainWindow(QMainWindow):
         buttonGeteilt.clicked.connect(self.Division)
         buttonGeteilt.resize(100,32)
         buttonGeteilt.move(200, 100)
+        buttonWurzel = QPushButton('Wurzel', self)
+        buttonWurzel.clicked.connect(self.Wurzel)
+        buttonWurzel.resize(100,32)
+        buttonWurzel.move(50, 150)
         buttonErgebnis = QPushButton('=', self)
         buttonErgebnis.clicked.connect(self.Ergebnis)
         buttonErgebnis.resize(100,32)
@@ -59,6 +64,10 @@ class MainWindow(QMainWindow):
     def Division(self):
         self.zahl1 = self.textbox1.text()
         self.Rechenverfahren = "Geteilt"
+    def Wurzel(self):
+        self.zahl1 = self.textbox1.text()
+        self.Rechenverfahren = "Wurzel"
+        self.Ergebnis()
     def Ergebnis(self):
         self.zahl2 = self.textbox1.text()
 
@@ -73,6 +82,9 @@ class MainWindow(QMainWindow):
         
         if self.Rechenverfahren == "Geteilt" :
             self.textbox1.setText( str(int(self.zahl1) / int(self.zahl2)))
+            
+        if self.Rechenverfahren == "Wurzel" :
+            self.textbox1.setText( str( math.sqrt(int(self.zahl1))))
         
 
 if __name__ == "__main__":
