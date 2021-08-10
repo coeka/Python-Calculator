@@ -2,27 +2,23 @@ import pyqt5_tools
 import pyqt5_plugins
 import PyQt5
 import math
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QTextEdit
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt, endl
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QSize   
-from PyQt5.QtWidgets import QLabel 
-from PyQt5.QtWidgets import QLineEdit
-from PyQt5.QtWidgets import QTextEdit
+from PyQt5.QtCore import QSize
 import sys
 class MainWindow(QMainWindow):
     zahl1 = int
     zahl2 = int
+    zahl3 = int
     Rechenverfahren = "nix"
     def __init__(self):
         QMainWindow.__init__(self)
-
         self.setMinimumSize(QSize(350, 400))    
         self.setWindowTitle("Python Calculator") 
-
         buttonPlus = QPushButton('+', self)
         buttonPlus.clicked.connect(self.Addition)
         buttonPlus.resize(100,32)
@@ -43,6 +39,10 @@ class MainWindow(QMainWindow):
         buttonWurzel.clicked.connect(self.Wurzel)
         buttonWurzel.resize(100,32)
         buttonWurzel.move(50, 150)
+        buttonPotenz = QPushButton('Potenz', self)
+        buttonPotenz.clicked.connect(self.Potenz)
+        buttonPotenz.resize(100,32)
+        buttonPotenz.move(200, 150)
         buttonErgebnis = QPushButton('=', self)
         buttonErgebnis.clicked.connect(self.Ergebnis)
         buttonErgebnis.resize(100,32)
@@ -64,6 +64,9 @@ class MainWindow(QMainWindow):
     def Division(self):
         self.zahl1 = self.textbox1.text()
         self.Rechenverfahren = "Geteilt"
+    def Potenz(self):
+        self.zahl1 = self.textbox1.text()
+        self.Rechenverfahren = "Potenz"
     def Wurzel(self):
         self.zahl1 = self.textbox1.text()
         self.Rechenverfahren = "Wurzel"
@@ -84,9 +87,16 @@ class MainWindow(QMainWindow):
             self.textbox1.setText( str(int(self.zahl1) / int(self.zahl2)))
             
         if self.Rechenverfahren == "Wurzel" :
-            self.textbox1.setText( str( math.sqrt(int(self.zahl1))))
+            self.textbox1.setText( str(math.sqrt(int(self.zahl1))))
+            
+        if self.Rechenverfahren == "Potenz" :
+            self.zahl3 = self.zahl1
+            while int(self.zahl2) > 1:
+                self.zahl3 = int(self.zahl1) * int(self.zahl3)
+                self.zahl2 = int(self.zahl2) - 1
+            self.textbox1.setText( str(int(self.zahl3)))
+            
         
-
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     mainWin = MainWindow()
