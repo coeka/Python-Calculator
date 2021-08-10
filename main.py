@@ -3,7 +3,7 @@ import pyqt5_plugins
 import PyQt5
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
 from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, endl
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon
@@ -49,22 +49,31 @@ class MainWindow(QMainWindow):
     
     def Addition(self):
         self.zahl1 = self.textbox1.text()
-        Rechenverfahren = "Plus"
+        self.Rechenverfahren = "Plus"
     def Subtraktion(self):
         self.zahl1 = self.textbox1.text()
-        zahl1= self.textbox.text
-        Rechenverfahren = "Minus"
+        self.Rechenverfahren = "Minus"
     def Multiplikation(self):
         self.zahl1 = self.textbox1.text()
-        zahl1= self.textbox.text
-        Rechenverfahren = "Mal"
+        self.Rechenverfahren = "Mal"
     def Division(self):
         self.zahl1 = self.textbox1.text()
-        zahl1= self.textbox.text
-        Rechenverfahren = "Geteilt"
+        self.Rechenverfahren = "Geteilt"
     def Ergebnis(self):
         self.zahl2 = self.textbox1.text()
-        self.textbox1.setText( str(int(self.zahl1) + int(self.zahl2)))
+
+        if self.Rechenverfahren == "Plus" :
+            self.textbox1.setText( str(int(self.zahl1) + int(self.zahl2)))
+        
+        if self.Rechenverfahren == "Minus" :
+            self.textbox1.setText( str(int(self.zahl1) - int(self.zahl2)))
+        
+        if self.Rechenverfahren == "Mal" :
+            self.textbox1.setText( str(int(self.zahl1) * int(self.zahl2)))
+        
+        if self.Rechenverfahren == "Geteilt" :
+            self.textbox1.setText( str(int(self.zahl1) / int(self.zahl2)))
+        
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
