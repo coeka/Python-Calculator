@@ -55,6 +55,14 @@ class MainWindow(QMainWindow):
         buttonPlus.clicked.connect(self.drei)
         buttonPlus.resize(50,32)
         buttonPlus.move(100, 150)
+        buttonPlus = QPushButton('0', self)
+        buttonPlus.clicked.connect(self.null)
+        buttonPlus.resize(50,32)
+        buttonPlus.move(0, 200)
+        buttonPlus = QPushButton('AC', self)
+        buttonPlus.clicked.connect(self.AC)
+        buttonPlus.resize(50,32)
+        buttonPlus.move(50, 200)
 
         buttonPlus = QPushButton('+', self)
         buttonPlus.clicked.connect(self.Addition)
@@ -108,6 +116,8 @@ class MainWindow(QMainWindow):
         self.textbox1.setText (self.textbox1.text() + str(9))
     def null(self):
         self.textbox1.setText (self.textbox1.text() + str(0))
+    def AC(self):
+        self.textbox1.setText ("")
 
     def Addition(self):
         self.zahl1 = self.textbox1.text()
