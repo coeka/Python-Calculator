@@ -63,6 +63,10 @@ class MainWindow(QMainWindow):
         buttonPlus.clicked.connect(self.AC)
         buttonPlus.resize(50,32)
         buttonPlus.move(50, 200)
+        buttonWurzel = QPushButton(',', self)
+        buttonWurzel.clicked.connect(self.Komma)
+        buttonWurzel.resize(50,32)
+        buttonWurzel.move(150, 200)
 
         buttonPlus = QPushButton('+', self)
         buttonPlus.clicked.connect(self.Addition)
@@ -116,6 +120,8 @@ class MainWindow(QMainWindow):
         self.textbox1.setText (self.textbox1.text() + str(9))
     def null(self):
         self.textbox1.setText (self.textbox1.text() + str(0))
+    def Komma(self):
+        self.textbox1.setText (self.textbox1.text() + str("."))
     def AC(self):
         self.textbox1.setText ("")
 
@@ -142,26 +148,26 @@ class MainWindow(QMainWindow):
         self.zahl2 = self.textbox1.text()
 
         if self.Rechenverfahren == "Plus" :
-            self.textbox1.setText( str(int(self.zahl1) + int(self.zahl2)))
+            self.textbox1.setText( str(float(self.zahl1) + float(self.zahl2)))
         
         if self.Rechenverfahren == "Minus" :
-            self.textbox1.setText( str(int(self.zahl1) - int(self.zahl2)))
+            self.textbox1.setText( str(float(self.zahl1) - float(self.zahl2)))
         
         if self.Rechenverfahren == "Mal" :
-            self.textbox1.setText( str(int(self.zahl1) * int(self.zahl2)))
+            self.textbox1.setText( str(float(self.zahl1) * float(self.zahl2)))
         
         if self.Rechenverfahren == "Geteilt" :
-            self.textbox1.setText( str(int(self.zahl1) / int(self.zahl2)))
+            self.textbox1.setText( str(float(self.zahl1) / float(self.zahl2)))
             
         if self.Rechenverfahren == "Wurzel" :
-            self.textbox1.setText( str(math.sqrt(int(self.zahl1))))
+            self.textbox1.setText( str(math.sqrt(float(self.zahl1))))
             
         if self.Rechenverfahren == "Potenz" :
             self.zahl3 = self.zahl1
-            while int(self.zahl2) > 1:
-                self.zahl3 = int(self.zahl1) * int(self.zahl3)
-                self.zahl2 = int(self.zahl2) - 1
-            self.textbox1.setText( str(int(self.zahl3)))
+            while float(self.zahl2) > 1:
+                self.zahl3 = float(self.zahl1) * float(self.zahl3)
+                self.zahl2 = float(self.zahl2) - 1
+            self.textbox1.setText( str(float(self.zahl3)))
             
         
 if __name__ == "__main__":
